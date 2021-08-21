@@ -13,11 +13,16 @@ class ViewController: UIViewController {
     
     var moveView = UIView()
     
+    var bool = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        print(tableView.contentOffset)
+        print(tableView.frame)
         
     }
     
@@ -59,7 +64,47 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        if moveView.frame.origin.x == view.frame.minX + 10{
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX - self.view.frame.size.width}, completion: nil)
     
+        }
+        
+    }
+   
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print(tableView.contentOffset)
+        if moveView.frame.origin.x == self.view.frame.minX - self.view.frame.size.width{
+        
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX + 10; self.moveView.frame.origin.y = self.moveView.frame.origin.y + self.tableView.contentOffset.y}, completion: nil)
+        
+    }
+
+        
+    }
+    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//
+//        if moveView.frame.origin.x == self.view.frame.minX - self.view.frame.size.width{
+//
+//            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX + 10}, completion: nil)
+//
+//        }
+//
+//    }
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//        if moveView.frame.origin.x == view.frame.minX + 10{
+//
+//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX - self.view.frame.size.width}, completion: nil)
+//
+//        }
+//
+//    }
     
     
     
