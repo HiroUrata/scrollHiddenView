@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     
     var moveView = UIView()
     
-    var bool = Bool()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +28,7 @@ class ViewController: UIViewController {
         moveView.frame = CGRect(x: view.frame.minX + 10, y: view.frame.maxY - (view.frame.maxY / 7), width: view.frame.size.width - 20, height: view.frame.size.height / 15)
         
         moveView.layer.cornerRadius = 30.0
-        moveView.backgroundColor = .systemGreen
+        moveView.backgroundColor = .tertiarySystemGroupedBackground
         
         moveView.layer.shadowOffset = CGSize(width: 5, height: 5)
         moveView.layer.shadowOpacity = 1
@@ -118,38 +116,5 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
 
         
     }
-    
-    //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        print(tableView.contentOffset)
-//        if moveView.frame.origin.x == self.view.frame.minX - self.view.frame.size.width{
-//
-//            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX + 10; self.moveView.frame.origin.y = self.moveView.frame.origin.y + self.tableView.contentOffset.y}, completion: nil)
-//
-//    }
-
         
-    //}
-    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//
-//        if moveView.frame.origin.x == self.view.frame.minX - self.view.frame.size.width{
-//
-//            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX + 10}, completion: nil)
-//
-//        }
-//
-//    }
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//        if moveView.frame.origin.x == view.frame.minX + 10{
-//
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX - self.view.frame.size.width}, completion: nil)
-//
-//        }
-//
-//    }
-    
-    
-    
 }
