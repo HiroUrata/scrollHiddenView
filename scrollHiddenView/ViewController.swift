@@ -21,15 +21,13 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        print(tableView.contentOffset)
-        print(tableView.frame)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        moveView.frame = CGRect(x: view.frame.minX + 10, y: view.frame.maxY - (view.frame.maxY / 5), width: view.frame.size.width - 20, height: view.frame.size.height / 15)
+        moveView.frame = CGRect(x: view.frame.minX + 10, y: view.frame.maxY - (view.frame.maxY / 7), width: view.frame.size.width - 20, height: view.frame.size.height / 15)
         
         moveView.layer.cornerRadius = 30.0
         moveView.backgroundColor = .tertiarySystemGroupedBackground
@@ -38,7 +36,7 @@ class ViewController: UIViewController {
         moveView.layer.shadowOpacity = 0.5
         moveView.layer.shadowRadius = 7
         
-        tableView.addSubview(moveView)
+        view.addSubview(moveView)
         
     }
 
@@ -65,26 +63,26 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        if moveView.frame.origin.x == view.frame.minX + 10{
-            
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX - self.view.frame.size.width}, completion: nil)
-    
+
+        if moveView.frame.origin.y == view.frame.maxY - (view.frame.maxY / 7){
+
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.y =  self.view.frame.maxY}, completion: nil)
+
         }
-        
+
     }
    
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print(tableView.contentOffset)
-        if moveView.frame.origin.x == self.view.frame.minX - self.view.frame.size.width{
-        
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX + 10; self.moveView.frame.origin.y = self.moveView.frame.origin.y + self.tableView.contentOffset.y}, completion: nil)
-        
-    }
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        print(tableView.contentOffset)
+//        if moveView.frame.origin.x == self.view.frame.minX - self.view.frame.size.width{
+//
+//            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.moveView.frame.origin.x =  self.view.frame.minX + 10; self.moveView.frame.origin.y = self.moveView.frame.origin.y + self.tableView.contentOffset.y}, completion: nil)
+//
+//    }
 
         
-    }
+    //}
     
 //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 //
